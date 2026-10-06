@@ -876,8 +876,8 @@ public sealed class CompositionController
 
             // 一度このSegmentでユーザー辞書を調べる。もし一致したのがあれば一時的にsegment.Rawで追加してあげる
             // 最後にセグメントで後に追加されたclausesに候補を追加するので、被りは気にしなくてよい
-            var dict = _options?.UserDictionary?.Lookup(segment.Raw);
-            if (dict?.Count > 0) userDictClauses.Add(new(segment.Raw, false, [.. dict]));
+            var userDictLookup = _options?.UserDictionary?.Lookup(segment.Raw);
+            if (userDictLookup?.Count > 0) userDictClauses.Add(new(segment.Raw, false, [.. userDictLookup]));
 
             if (segment.IsEnglish)
             {
